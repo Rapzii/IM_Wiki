@@ -94,3 +94,12 @@ input, textarea {
 
 
 /* kode søkefelt css */
+.sok {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sok input {
+    flex: 1;
+}
