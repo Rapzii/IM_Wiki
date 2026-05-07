@@ -7,7 +7,7 @@ Har laget en slik funksjon for å vise utvikling kompetanse dette er bsic html f
 # App.py Foride som viste alle sider nå kobles til databasen 
 
 # Slik så den gammle koden 
-<img width="176" height="67" alt="image" src="https://github.com/user-attachments/assets/235b7be9-0edb-4bfd-acf5-2eb744952f17" />
+<img width="384" height="auto" alt="image" src="https://github.com/user-attachments/assets/235b7be9-0edb-4bfd-acf5-2eb744952f17" />
 
 # Og den har blitt endret følgende 
 
