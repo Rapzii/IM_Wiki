@@ -45,7 +45,7 @@ Steg 3
 bytt navnet til .env for å gjøre den om til .env fil 
 <img width="1143" height="34" alt="image" src="https://github.com/user-attachments/assets/1bdb3049-7f73-4c75-9c55-9cb009988f9b" />
 steg 4 fyll den med database informasjon 
-<img width="125" height="67" alt="image" src="https://github.com/user-attachments/assets/3aaae616-7f5f-4a87-96e0-e4e8298bd580" />
+<img width="125" height="auto" alt="image" src="https://github.com/user-attachments/assets/3aaae616-7f5f-4a87-96e0-e4e8298bd580" />
 
 
 
