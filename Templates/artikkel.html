@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block innhold %}
 
+
 <h1>{{ artikkel.tittel }}</h1>
+
+<p>Kategori: {{ artikkel.kategori }}</p>
 
 <div class="artikel-innhold">{{ artikkel.innhold }}</div>
 

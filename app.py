@@ -75,9 +75,10 @@ def ny_artikkel():
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
+        kategori = request.form["kategori"]
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("INSERT INTO artikler (tittel, innhold) VALUES (%s, %s)", (tittel, innhold))
+        cursor.execute("INSERT INTO artikler (tittel, innhold, kategori) VALUES (%s, %s, %s)", (tittel, innhold, kategori))
         db.commit()
         db.close()
         return redirect(url_for("forside"))
@@ -93,7 +94,8 @@ def rediger(id):
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
-        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s WHERE id = %s", (tittel, innhold, id))
+        kategori = request.form["kategori"]
+        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s, kategori = %s WHERE id = %s", (tittel, innhold, kategori, id))
         db.commit()
         db.close()
         return redirect(url_for("vis_artikkel", id=id))
