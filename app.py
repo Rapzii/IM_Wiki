@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
+
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # Laster inn .env filen
+load_dotenv()
+# Laster inn .env filen
 
 app = Flask(__name__)
 
@@ -17,6 +19,7 @@ def get_db():
         cursorclass=pymysql.cursors.DictCursor
     )
     return conn
+
 
 def init_db():
     db = get_db()
@@ -36,11 +39,22 @@ def init_db():
 # Forside: viser alle artikler
 @app.route("/")
 def forside():
+    sok = request.args.get("sok")  # henter det brukeren skriver
+
     db = get_db()
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM artikler ORDER BY tittel")
+
+    if sok:
+        cursor.execute(
+            "SELECT * FROM artikler WHERE tittel LIKE %s OR innhold LIKE %s ORDER BY tittel",
+            (f"%{sok}%", f"%{sok}%")
+        )
+    else:
+        cursor.execute("SELECT * FROM artikler ORDER BY tittel")
+
     artikler = cursor.fetchall()
     db.close()
+
     return render_template("forside.html", artikler=artikler)
 
 # Vis én artikkel

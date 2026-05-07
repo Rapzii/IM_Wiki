@@ -2,6 +2,7 @@
 {% block innhold %}
 
 <h1>Alle artikler</h1>
+
 <form method="get" class="sok">
     <input 
         type="text" 
@@ -11,6 +12,7 @@
     >
     <button type="submit">Søk</button>
 </form>
+
 
 {% if artikler %}
     {% for a in artikler %}
