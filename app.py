@@ -112,6 +112,10 @@ def slett(id):
     db.close()
     return redirect(url_for("forside"))
 
+@app.route("/hjelp")
+def hjelp():
+    return render_template("hjelp.html")
+
 # Start appen
 if __name__ == "__main__":
     init_db()
