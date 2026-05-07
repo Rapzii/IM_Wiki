@@ -36,22 +36,11 @@ def init_db():
 # Forside: viser alle artikler
 @app.route("/")
 def forside():
-    sok = request.args.get("sok")  # henter det brukeren skriver
-
     db = get_db()
     cursor = db.cursor()
-
-    if sok:
-        cursor.execute(
-            "SELECT * FROM artikler WHERE tittel LIKE %s OR innhold LIKE %s ORDER BY tittel",
-            (f"%{sok}%", f"%{sok}%")
-        )
-    else:
-        cursor.execute("SELECT * FROM artikler ORDER BY tittel")
-
+    cursor.execute("SELECT * FROM artikler ORDER BY tittel")
     artikler = cursor.fetchall()
     db.close()
-
     return render_template("forside.html", artikler=artikler)
 
 # Vis én artikkel
