@@ -47,6 +47,18 @@ bytt navnet til .env for å gjøre den om til .env fil
 steg 4 fyll den med database informasjon 
 <img width="393" height="auto" alt="image" src="https://github.com/user-attachments/assets/3aaae616-7f5f-4a87-96e0-e4e8298bd580" />
 
+# legget til css kode for å gjøre søkefunksjonen bedre
+
+<img width="177" height="149" alt="image" src="https://github.com/user-attachments/assets/0316d173-70d3-46be-b088-3c4316de819d" />
+
+
+# jobber nå med å lage 
+
+
+
+
+
+
 
 
 
