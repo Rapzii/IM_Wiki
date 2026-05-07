@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block innhold %}
+
+<h1>Rediger artikkel</h1>
+
+<form method="POST">
+    <label>Tittel</label>
+    <input type="text" name="tittel" value="{{ artikkel.tittel }}" required>
+
+    <label>Innhold</label>
+    <textarea name="innhold" required>{{ artikkel.innhold }}</textarea>
+
+    <button type="submit">Lagre endringer</button>
+    <a href="/artikkel/{{ artikkel.id }}" class="btn btn-ghost">Avbryt</a>
+</form>
+
+{% endblock %}

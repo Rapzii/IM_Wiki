@@ -1,0 +1,105 @@
+/* generelt */
+body {
+    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* meny */
+.meny {
+    width: 100%;
+    display: flex;
+    gap: 2%;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    padding: 1%;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* lenker i menyen */
+a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #6c63ff;
+}
+
+/* hovedinnholdet */
+.innhold {
+    width: 60%;
+    margin: 50px auto;
+}
+
+/* artikkel-kort på forsiden */
+.kort {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.kort a {
+    font-size: 18px;
+}
+
+/* knapper */
+.knapp {
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.knapp:hover {
+    background-color: #534ab7;
+    color: white;
+}
+
+.knapp-rød {
+    background-color: #ff6584;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* skjema */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 16px
+
+}
+
+
+/* kode søkefelt css */
+.sok {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sok input {
+    flex: 1;
+}
