@@ -1,21 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
 
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-# Laster inn .env filen
-
 app = Flask(__name__)
 
 # --- DATABASE ---
 def get_db():
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD"),
-        database=os.getenv("DB_NAME"),
+        host="localhost",
+        user="zaid",
+        password="ZexO@1234",
+        database="imwiki",
         cursorclass=pymysql.cursors.DictCursor
     )
     return conn
@@ -39,22 +33,11 @@ def init_db():
 # Forside: viser alle artikler
 @app.route("/")
 def forside():
-    sok = request.args.get("sok")  # henter det brukeren skriver
-
     db = get_db()
     cursor = db.cursor()
-
-    if sok:
-        cursor.execute(
-            "SELECT * FROM artikler WHERE tittel LIKE %s OR innhold LIKE %s ORDER BY tittel",
-            (f"%{sok}%", f"%{sok}%")
-        )
-    else:
-        cursor.execute("SELECT * FROM artikler ORDER BY tittel")
-
+    cursor.execute("SELECT * FROM artikler ORDER BY tittel")
     artikler = cursor.fetchall()
     db.close()
-
     return render_template("forside.html", artikler=artikler)
 
 # Vis én artikkel
@@ -75,10 +58,9 @@ def ny_artikkel():
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
-        kategori = request.form["kategori"]
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("INSERT INTO artikler (tittel, innhold, kategori) VALUES (%s, %s, %s)", (tittel, innhold, kategori))
+        cursor.execute("INSERT INTO artikler (tittel, innhold) VALUES (%s, %s)", (tittel, innhold))
         db.commit()
         db.close()
         return redirect(url_for("forside"))
@@ -94,8 +76,7 @@ def rediger(id):
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
-        kategori = request.form["kategori"]
-        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s, kategori = %s WHERE id = %s", (tittel, innhold, kategori, id))
+        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s WHERE id = %s", (tittel, innhold, id))
         db.commit()
         db.close()
         return redirect(url_for("vis_artikkel", id=id))
@@ -112,11 +93,7 @@ def slett(id):
     db.close()
     return redirect(url_for("forside"))
 
-@app.route("/hjelp")
-def hjelp():
-    return render_template("hjelp.html")
-
 # Start appen
 if __name__ == "__main__":
     init_db()
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

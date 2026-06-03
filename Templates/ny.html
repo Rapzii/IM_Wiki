@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 {% block innhold %}
-
+ 
 <h1>Ny artikkel</h1>
-
+ 
 <form method="POST">
     <label>Tittel</label>
     <input type="text" name="tittel" placeholder="F.eks. Python, Nettverksprotokoller..." required>
-     
-    <label>Kategori</label>
-    <input type="text" name="kategori" placeholder="F.eks. Nettverk, Database..." required>
-
-
+ 
     <label>Innhold</label>
     <textarea name="innhold" placeholder="Skriv innholdet her..." required></textarea>
-
+ 
     <button type="submit">Lagre artikkel</button>
     <a href="/" class="btn btn-ghost">Avbryt</a>
 </form>
-
+ 
 {% endblock %}

@@ -7,20 +7,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
+ 
 <div class="meny">
     <a href="/" class="logo">IM Wiki</a>
-    <a href="/hjelp">Hjelp</a>
     <a href="/ny">+ Ny artikkel</a>
-   
 </div>
-
+ 
 <div class="innhold">
     {% block innhold %}{% endblock %}
-
 </div>
-
-
-
+ 
 </body>
 </html>
