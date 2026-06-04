@@ -1,6 +1,6 @@
 /* generelt */
 body {
-    background-color: #3ebcff;
+    background-color: #ffffff;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #ffffff;
+    background-color: #a1a1a1;
     padding: 1%;
 }
 
@@ -32,7 +32,7 @@ a {
 }
 
 a:hover {
-    color: #6c63ff;
+    color: #9e9e9e;
 }
 
 /* hovedinnholdet */
@@ -43,7 +43,7 @@ a:hover {
 
 /* artikkel-kort på forsiden */
 .kort {
-    background-color: #ffffff;
+    background-color: #565656;
     padding: 15px;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -55,7 +55,7 @@ a:hover {
 
 /* knapper */
 .knapp {
-    background-color: #6c63ff;
+    background-color: #ffffff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -66,12 +66,12 @@ a:hover {
 }
 
 .knapp:hover {
-    background-color: #534ab7;
-    color: white;
+    background-color: #1500f6;
+    color: rgb(255, 255, 255);
 }
 
 .knapp-rød {
-    background-color: #ff6584;
+    background-color: #ffffff;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -86,7 +86,7 @@ input, textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #cccccc;
+    border: 1px solid #7a7a7a;
     border-radius: 8px;
     font-size: 16px
 

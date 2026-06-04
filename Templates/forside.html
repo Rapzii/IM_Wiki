@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 {% block innhold %}
- 
+
 <h1>Alle artikler</h1>
- 
+
+<form method="get" class="sok">
+    <input 
+        type="text" 
+        name="sok" 
+        placeholder="Søk etter artikler..."
+        value="{{ request.args.get('sok', '') }}"
+    >
+    <button type="submit">Søk</button>
+</form>
+
 {% if artikler %}
     {% for a in artikler %}
     <div class="kort">
@@ -12,6 +22,6 @@
 {% else %}
     <p>Ingen artikler ennå. <a href="/ny">Lag den første!</a></p>
 {% endif %}
- 
+
 {% endblock %}
  

@@ -1,19 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 app = Flask(__name__)
 
 # --- DATABASE ---
 def get_db():
     conn = pymysql.connect(
-        host="localhost",
-        user="zaid",
-        password="ZexO@1234",
-        database="imwiki",
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
         cursorclass=pymysql.cursors.DictCursor
     )
     return conn
-
 
 def init_db():
     db = get_db()
@@ -30,17 +34,22 @@ def init_db():
 
 # --- SIDER ---
 
-# Forside: viser alle artikler
 @app.route("/")
 def forside():
+    sok = request.args.get("sok")
     db = get_db()
     cursor = db.cursor()
-    cursor.execute("SELECT * FROM artikler ORDER BY tittel")
+    if sok:
+        cursor.execute(
+            "SELECT * FROM artikler WHERE tittel LIKE %s OR innhold LIKE %s ORDER BY tittel",
+            (f"%{sok}%", f"%{sok}%")
+        )
+    else:
+        cursor.execute("SELECT * FROM artikler ORDER BY tittel")
     artikler = cursor.fetchall()
     db.close()
     return render_template("forside.html", artikler=artikler)
 
-# Vis én artikkel
 @app.route("/artikkel/<int:id>")
 def vis_artikkel(id):
     db = get_db()
@@ -52,7 +61,6 @@ def vis_artikkel(id):
         return "Artikkel ikke funnet", 404
     return render_template("artikkel.html", artikkel=artikkel)
 
-# Ny artikkel
 @app.route("/ny", methods=["GET", "POST"])
 def ny_artikkel():
     if request.method == "POST":
@@ -66,7 +74,6 @@ def ny_artikkel():
         return redirect(url_for("forside"))
     return render_template("ny.html")
 
-# Rediger artikkel
 @app.route("/rediger/<int:id>", methods=["GET", "POST"])
 def rediger(id):
     db = get_db()
@@ -83,7 +90,6 @@ def rediger(id):
     db.close()
     return render_template("rediger.html", artikkel=artikkel)
 
-# Slett artikkel
 @app.route("/slett/<int:id>")
 def slett(id):
     db = get_db()
@@ -93,7 +99,6 @@ def slett(id):
     db.close()
     return redirect(url_for("forside"))
 
-# Start appen
 if __name__ == "__main__":
     init_db()
     app.run(debug=True, host="0.0.0.0")
