@@ -61,18 +61,27 @@ def vis_artikkel(id):
         return "Artikkel ikke funnet", 404
     return render_template("artikkel.html", artikkel=artikkel)
 
+
+@app.route("/hjelp")
+def hjelp():
+    return render_template("hjelp.html")
+
+
 @app.route("/ny", methods=["GET", "POST"])
 def ny_artikkel():
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
+        kategori = request.form["kategori"]
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("INSERT INTO artikler (tittel, innhold) VALUES (%s, %s)", (tittel, innhold))
+        cursor.execute("INSERT INTO artikler (tittel, innhold, kategori) VALUES (%s, %s, %s)", (tittel, innhold, kategori))
         db.commit()
         db.close()
         return redirect(url_for("forside"))
     return render_template("ny.html")
+
+
 
 @app.route("/rediger/<int:id>", methods=["GET", "POST"])
 def rediger(id):
@@ -83,12 +92,14 @@ def rediger(id):
     if request.method == "POST":
         tittel = request.form["tittel"]
         innhold = request.form["innhold"]
-        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s WHERE id = %s", (tittel, innhold, id))
+        kategori = request.form["kategori"]
+        cursor.execute("UPDATE artikler SET tittel = %s, innhold = %s, kategori = %s WHERE id = %s", (tittel, innhold, kategori, id))
         db.commit()
         db.close()
         return redirect(url_for("vis_artikkel", id=id))
     db.close()
     return render_template("rediger.html", artikkel=artikkel)
+
 
 @app.route("/slett/<int:id>")
 def slett(id):

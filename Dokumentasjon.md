@@ -54,6 +54,10 @@ steg 4 fyll den med database informasjon
 
 # jobber nå med å lage 
 
+her jobbet en del med universiell uforming fordi man kunne ikke se godt hva som sto når man hovret over ting
+
+![alt text](image.png)
+
 
 
 

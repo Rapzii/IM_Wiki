@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block innhold %}
- 
+
 <h1>{{ artikkel.tittel }}</h1>
- 
+
+<p>Kategori: {{ artikkel.kategori }}</p>
+
 <div class="artikel-innhold">{{ artikkel.innhold }}</div>
- 
+
 <div class="actions">
     <a href="/rediger/{{ artikkel.id }}" class="btn">Rediger</a>
     <a href="/slett/{{ artikkel.id }}" class="btn btn-danger"
        onclick="return confirm('Er du sikker på at du vil slette denne artikkelen?')">Slett</a>
     <a href="/" class="btn btn-ghost">← Tilbake</a>
 </div>
- 
+
 {% endblock %}
